@@ -40,7 +40,6 @@
             this.lbl_amount = new System.Windows.Forms.Label();
             this.inp_amount = new System.Windows.Forms.TextBox();
             this.lbl_percent = new System.Windows.Forms.Label();
-            this.inp_tip_bg = new System.Windows.Forms.TextBox();
             this.lbl_total_out = new System.Windows.Forms.Label();
             this.lbl_tip_out = new System.Windows.Forms.Label();
             this.lbl_pp2 = new System.Windows.Forms.Label();
@@ -49,6 +48,7 @@
             this.lbl_tip_pp = new System.Windows.Forms.Label();
             this.close = new System.Windows.Forms.Label();
             this.minimize = new System.Windows.Forms.Label();
+            this.pnl_inp_tip = new System.Windows.Forms.Panel();
             this.pnl_division.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -66,7 +66,7 @@
             this.pnl_division.Controls.Add(this.lbl_amount);
             this.pnl_division.Controls.Add(this.inp_amount);
             this.pnl_division.Controls.Add(this.lbl_percent);
-            this.pnl_division.Controls.Add(this.inp_tip_bg);
+            this.pnl_division.Controls.Add(this.pnl_inp_tip);
             this.pnl_division.Location = new System.Drawing.Point(-10, -5);
             this.pnl_division.Name = "pnl_division";
             this.pnl_division.Size = new System.Drawing.Size(281, 274);
@@ -80,7 +80,7 @@
             this.inp_tip.MaxLength = 3;
             this.inp_tip.Name = "inp_tip";
             this.inp_tip.Size = new System.Drawing.Size(83, 29);
-            this.inp_tip.TabIndex = 12;
+            this.inp_tip.TabIndex = 2;
             this.inp_tip.Text = "10";
             this.inp_tip.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             this.inp_tip.TextChanged += new System.EventHandler(this.update);
@@ -110,7 +110,7 @@
             this.btn_decr_people.Location = new System.Drawing.Point(27, 199);
             this.btn_decr_people.Name = "btn_decr_people";
             this.btn_decr_people.Size = new System.Drawing.Size(36, 36);
-            this.btn_decr_people.TabIndex = 10;
+            this.btn_decr_people.TabIndex = 4;
             this.btn_decr_people.Text = "-";
             this.btn_decr_people.UseVisualStyleBackColor = false;
             this.btn_decr_people.Click += new System.EventHandler(this.btn_decr_people_Click);
@@ -127,7 +127,7 @@
             this.btn_incr_people.Location = new System.Drawing.Point(222, 199);
             this.btn_incr_people.Name = "btn_incr_people";
             this.btn_incr_people.Size = new System.Drawing.Size(36, 36);
-            this.btn_incr_people.TabIndex = 9;
+            this.btn_incr_people.TabIndex = 6;
             this.btn_incr_people.Text = "+";
             this.btn_incr_people.UseVisualStyleBackColor = false;
             this.btn_incr_people.Click += new System.EventHandler(this.btn_incr_people_Click);
@@ -140,7 +140,7 @@
             this.inp_total_people.MaxLength = 6;
             this.inp_total_people.Name = "inp_total_people";
             this.inp_total_people.Size = new System.Drawing.Size(161, 36);
-            this.inp_total_people.TabIndex = 8;
+            this.inp_total_people.TabIndex = 5;
             this.inp_total_people.Text = "1";
             this.inp_total_people.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             this.inp_total_people.TextChanged += new System.EventHandler(this.update);
@@ -170,7 +170,7 @@
             this.btn_decr_tip.Location = new System.Drawing.Point(27, 126);
             this.btn_decr_tip.Name = "btn_decr_tip";
             this.btn_decr_tip.Size = new System.Drawing.Size(36, 36);
-            this.btn_decr_tip.TabIndex = 6;
+            this.btn_decr_tip.TabIndex = 1;
             this.btn_decr_tip.Text = "-";
             this.btn_decr_tip.UseVisualStyleBackColor = false;
             this.btn_decr_tip.Click += new System.EventHandler(this.btn_decr_tip_Click);
@@ -187,7 +187,7 @@
             this.btn_incr_tip.Location = new System.Drawing.Point(222, 126);
             this.btn_incr_tip.Name = "btn_incr_tip";
             this.btn_incr_tip.Size = new System.Drawing.Size(36, 36);
-            this.btn_incr_tip.TabIndex = 5;
+            this.btn_incr_tip.TabIndex = 3;
             this.btn_incr_tip.Text = "+";
             this.btn_incr_tip.UseVisualStyleBackColor = false;
             this.btn_incr_tip.Click += new System.EventHandler(this.btn_incr_tip_Click);
@@ -207,7 +207,7 @@
             // 
             this.inp_amount.Font = new System.Drawing.Font("Helvetica", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.inp_amount.Location = new System.Drawing.Point(27, 53);
-            this.inp_amount.MaxLength = 12;
+            this.inp_amount.MaxLength = 8;
             this.inp_amount.Name = "inp_amount";
             this.inp_amount.Size = new System.Drawing.Size(231, 36);
             this.inp_amount.TabIndex = 0;
@@ -229,37 +229,24 @@
             this.lbl_percent.Text = "%";
             this.lbl_percent.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             // 
-            // inp_tip_bg
-            // 
-            this.inp_tip_bg.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.inp_tip_bg.Font = new System.Drawing.Font("Helvetica", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.inp_tip_bg.Location = new System.Drawing.Point(62, 126);
-            this.inp_tip_bg.MaxLength = 4;
-            this.inp_tip_bg.Name = "inp_tip_bg";
-            this.inp_tip_bg.Size = new System.Drawing.Size(161, 36);
-            this.inp_tip_bg.TabIndex = 3;
-            this.inp_tip_bg.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
-            // 
             // lbl_total_out
             // 
-            this.lbl_total_out.AutoSize = true;
             this.lbl_total_out.Font = new System.Drawing.Font("Helvetica", 27.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lbl_total_out.Location = new System.Drawing.Point(482, 148);
+            this.lbl_total_out.Location = new System.Drawing.Point(366, 148);
             this.lbl_total_out.Name = "lbl_total_out";
-            this.lbl_total_out.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
-            this.lbl_total_out.Size = new System.Drawing.Size(150, 45);
+            this.lbl_total_out.RightToLeft = System.Windows.Forms.RightToLeft.No;
+            this.lbl_total_out.Size = new System.Drawing.Size(298, 45);
             this.lbl_total_out.TabIndex = 23;
             this.lbl_total_out.Text = "$000.00";
             this.lbl_total_out.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             // 
             // lbl_tip_out
             // 
-            this.lbl_tip_out.AutoSize = true;
             this.lbl_tip_out.Font = new System.Drawing.Font("Helvetica", 27.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lbl_tip_out.Location = new System.Drawing.Point(498, 82);
+            this.lbl_tip_out.Location = new System.Drawing.Point(362, 82);
             this.lbl_tip_out.Name = "lbl_tip_out";
-            this.lbl_tip_out.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
-            this.lbl_tip_out.Size = new System.Drawing.Size(134, 43);
+            this.lbl_tip_out.RightToLeft = System.Windows.Forms.RightToLeft.No;
+            this.lbl_tip_out.Size = new System.Drawing.Size(302, 43);
             this.lbl_tip_out.TabIndex = 22;
             this.lbl_tip_out.Text = "$00.00";
             this.lbl_tip_out.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
@@ -337,6 +324,14 @@
             this.minimize.MouseLeave += new System.EventHandler(this.minimize_MouseLeave);
             this.minimize.MouseHover += new System.EventHandler(this.minimize_MouseHover);
             // 
+            // pnl_inp_tip
+            // 
+            this.pnl_inp_tip.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.pnl_inp_tip.Location = new System.Drawing.Point(62, 126);
+            this.pnl_inp_tip.Name = "pnl_inp_tip";
+            this.pnl_inp_tip.Size = new System.Drawing.Size(161, 36);
+            this.pnl_inp_tip.TabIndex = 26;
+            // 
             // TipCalculator
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 17F);
@@ -345,13 +340,13 @@
             this.ClientSize = new System.Drawing.Size(676, 267);
             this.Controls.Add(this.minimize);
             this.Controls.Add(this.close);
-            this.Controls.Add(this.lbl_total_out);
-            this.Controls.Add(this.lbl_tip_out);
             this.Controls.Add(this.lbl_pp2);
             this.Controls.Add(this.lbl_total);
             this.Controls.Add(this.lbl_pp1);
             this.Controls.Add(this.lbl_tip_pp);
             this.Controls.Add(this.pnl_division);
+            this.Controls.Add(this.lbl_total_out);
+            this.Controls.Add(this.lbl_tip_out);
             this.Font = new System.Drawing.Font("Helvetica", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.Margin = new System.Windows.Forms.Padding(4);
@@ -370,7 +365,6 @@
 
         private System.Windows.Forms.Panel pnl_division;
         private System.Windows.Forms.TextBox inp_amount;
-        private System.Windows.Forms.TextBox inp_tip_bg;
         private System.Windows.Forms.Label lbl_amount;
         private System.Windows.Forms.Button btn_decr_tip;
         private System.Windows.Forms.Button btn_incr_tip;
@@ -389,6 +383,7 @@
         private System.Windows.Forms.Label minimize;
         private System.Windows.Forms.TextBox inp_tip;
         private System.Windows.Forms.Label lbl_percent;
+        private System.Windows.Forms.Panel pnl_inp_tip;
     }
 }
 
