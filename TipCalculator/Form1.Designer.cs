@@ -45,6 +45,8 @@
             this.total_label = new System.Windows.Forms.Label();
             this.pp_label1 = new System.Windows.Forms.Label();
             this.tip_pp_label = new System.Windows.Forms.Label();
+            this.close = new System.Windows.Forms.Label();
+            this.minimize = new System.Windows.Forms.Label();
             this.pnl_division.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -261,12 +263,45 @@
             this.tip_pp_label.TabIndex = 18;
             this.tip_pp_label.Text = "Tip";
             // 
+            // close
+            // 
+            this.close.AutoSize = true;
+            this.close.BackColor = System.Drawing.Color.White;
+            this.close.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.close.ForeColor = System.Drawing.Color.DarkGray;
+            this.close.Location = new System.Drawing.Point(646, 9);
+            this.close.Name = "close";
+            this.close.Padding = new System.Windows.Forms.Padding(2);
+            this.close.Size = new System.Drawing.Size(22, 21);
+            this.close.TabIndex = 24;
+            this.close.Text = "X";
+            this.close.Click += new System.EventHandler(this.close_Click);
+            this.close.MouseLeave += new System.EventHandler(this.close_MouseLeave);
+            this.close.MouseHover += new System.EventHandler(this.close_MouseHover);
+            // 
+            // minimize
+            // 
+            this.minimize.AutoSize = true;
+            this.minimize.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.minimize.ForeColor = System.Drawing.Color.DarkGray;
+            this.minimize.Location = new System.Drawing.Point(620, 8);
+            this.minimize.Name = "minimize";
+            this.minimize.Padding = new System.Windows.Forms.Padding(2);
+            this.minimize.Size = new System.Drawing.Size(20, 21);
+            this.minimize.TabIndex = 25;
+            this.minimize.Text = "_";
+            this.minimize.Click += new System.EventHandler(this.minimize_Click);
+            this.minimize.MouseLeave += new System.EventHandler(this.minimize_MouseLeave);
+            this.minimize.MouseHover += new System.EventHandler(this.minimize_MouseHover);
+            // 
             // TipCalculator
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 17F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.White;
             this.ClientSize = new System.Drawing.Size(676, 267);
+            this.Controls.Add(this.minimize);
+            this.Controls.Add(this.close);
             this.Controls.Add(this.total_pp);
             this.Controls.Add(this.tip_pp);
             this.Controls.Add(this.pp_label2);
@@ -307,6 +342,8 @@
         private System.Windows.Forms.Label total_label;
         private System.Windows.Forms.Label pp_label1;
         private System.Windows.Forms.Label tip_pp_label;
+        private System.Windows.Forms.Label close;
+        private System.Windows.Forms.Label minimize;
     }
 }
 
