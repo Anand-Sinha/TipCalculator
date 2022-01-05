@@ -31,15 +31,16 @@
             this.pnl_division = new System.Windows.Forms.Panel();
             this.inp_tip = new System.Windows.Forms.TextBox();
             this.lbl_no_of_people = new System.Windows.Forms.Label();
-            this.button1 = new System.Windows.Forms.Button();
-            this.button2 = new System.Windows.Forms.Button();
+            this.btn_decr_people = new System.Windows.Forms.Button();
+            this.btn_incr_people = new System.Windows.Forms.Button();
             this.inp_total_people = new System.Windows.Forms.TextBox();
             this.lbl_tip = new System.Windows.Forms.Label();
-            this.btn_tip_sub = new System.Windows.Forms.Button();
-            this.btn_tip_add = new System.Windows.Forms.Button();
-            this.inp_tip_bg = new System.Windows.Forms.TextBox();
+            this.btn_decr_tip = new System.Windows.Forms.Button();
+            this.btn_incr_tip = new System.Windows.Forms.Button();
             this.lbl_amount = new System.Windows.Forms.Label();
             this.inp_amount = new System.Windows.Forms.TextBox();
+            this.lbl_percent = new System.Windows.Forms.Label();
+            this.inp_tip_bg = new System.Windows.Forms.TextBox();
             this.lbl_total_out = new System.Windows.Forms.Label();
             this.lbl_tip_out = new System.Windows.Forms.Label();
             this.lbl_pp2 = new System.Windows.Forms.Label();
@@ -48,7 +49,6 @@
             this.lbl_tip_pp = new System.Windows.Forms.Label();
             this.close = new System.Windows.Forms.Label();
             this.minimize = new System.Windows.Forms.Label();
-            this.lbl_percent = new System.Windows.Forms.Label();
             this.pnl_division.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -57,12 +57,12 @@
             this.pnl_division.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
             this.pnl_division.Controls.Add(this.inp_tip);
             this.pnl_division.Controls.Add(this.lbl_no_of_people);
-            this.pnl_division.Controls.Add(this.button1);
-            this.pnl_division.Controls.Add(this.button2);
+            this.pnl_division.Controls.Add(this.btn_decr_people);
+            this.pnl_division.Controls.Add(this.btn_incr_people);
             this.pnl_division.Controls.Add(this.inp_total_people);
             this.pnl_division.Controls.Add(this.lbl_tip);
-            this.pnl_division.Controls.Add(this.btn_tip_sub);
-            this.pnl_division.Controls.Add(this.btn_tip_add);
+            this.pnl_division.Controls.Add(this.btn_decr_tip);
+            this.pnl_division.Controls.Add(this.btn_incr_tip);
             this.pnl_division.Controls.Add(this.lbl_amount);
             this.pnl_division.Controls.Add(this.inp_amount);
             this.pnl_division.Controls.Add(this.lbl_percent);
@@ -83,6 +83,9 @@
             this.inp_tip.TabIndex = 12;
             this.inp_tip.Text = "10";
             this.inp_tip.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
+            this.inp_tip.TextChanged += new System.EventHandler(this.update);
+            this.inp_tip.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.digitCheck);
+            this.inp_tip.Leave += new System.EventHandler(this.nullCheck);
             // 
             // lbl_no_of_people
             // 
@@ -95,37 +98,39 @@
             this.lbl_no_of_people.TabIndex = 11;
             this.lbl_no_of_people.Text = "Number of people";
             // 
-            // button1
+            // btn_decr_people
             // 
-            this.button1.BackColor = System.Drawing.Color.WhiteSmoke;
-            this.button1.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
-            this.button1.FlatAppearance.BorderColor = System.Drawing.Color.White;
-            this.button1.FlatAppearance.BorderSize = 10;
-            this.button1.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
-            this.button1.Font = new System.Drawing.Font("Helvetica", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.button1.ForeColor = System.Drawing.Color.Gray;
-            this.button1.Location = new System.Drawing.Point(27, 199);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(36, 36);
-            this.button1.TabIndex = 10;
-            this.button1.Text = "-";
-            this.button1.UseVisualStyleBackColor = false;
+            this.btn_decr_people.BackColor = System.Drawing.Color.WhiteSmoke;
+            this.btn_decr_people.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
+            this.btn_decr_people.FlatAppearance.BorderColor = System.Drawing.Color.White;
+            this.btn_decr_people.FlatAppearance.BorderSize = 10;
+            this.btn_decr_people.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
+            this.btn_decr_people.Font = new System.Drawing.Font("Helvetica", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btn_decr_people.ForeColor = System.Drawing.Color.Gray;
+            this.btn_decr_people.Location = new System.Drawing.Point(27, 199);
+            this.btn_decr_people.Name = "btn_decr_people";
+            this.btn_decr_people.Size = new System.Drawing.Size(36, 36);
+            this.btn_decr_people.TabIndex = 10;
+            this.btn_decr_people.Text = "-";
+            this.btn_decr_people.UseVisualStyleBackColor = false;
+            this.btn_decr_people.Click += new System.EventHandler(this.btn_decr_people_Click);
             // 
-            // button2
+            // btn_incr_people
             // 
-            this.button2.BackColor = System.Drawing.Color.WhiteSmoke;
-            this.button2.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
-            this.button2.FlatAppearance.BorderColor = System.Drawing.Color.White;
-            this.button2.FlatAppearance.BorderSize = 10;
-            this.button2.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
-            this.button2.Font = new System.Drawing.Font("Helvetica", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.button2.ForeColor = System.Drawing.Color.Gray;
-            this.button2.Location = new System.Drawing.Point(222, 199);
-            this.button2.Name = "button2";
-            this.button2.Size = new System.Drawing.Size(36, 36);
-            this.button2.TabIndex = 9;
-            this.button2.Text = "+";
-            this.button2.UseVisualStyleBackColor = false;
+            this.btn_incr_people.BackColor = System.Drawing.Color.WhiteSmoke;
+            this.btn_incr_people.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
+            this.btn_incr_people.FlatAppearance.BorderColor = System.Drawing.Color.White;
+            this.btn_incr_people.FlatAppearance.BorderSize = 10;
+            this.btn_incr_people.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
+            this.btn_incr_people.Font = new System.Drawing.Font("Helvetica", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btn_incr_people.ForeColor = System.Drawing.Color.Gray;
+            this.btn_incr_people.Location = new System.Drawing.Point(222, 199);
+            this.btn_incr_people.Name = "btn_incr_people";
+            this.btn_incr_people.Size = new System.Drawing.Size(36, 36);
+            this.btn_incr_people.TabIndex = 9;
+            this.btn_incr_people.Text = "+";
+            this.btn_incr_people.UseVisualStyleBackColor = false;
+            this.btn_incr_people.Click += new System.EventHandler(this.btn_incr_people_Click);
             // 
             // inp_total_people
             // 
@@ -138,6 +143,9 @@
             this.inp_total_people.TabIndex = 8;
             this.inp_total_people.Text = "1";
             this.inp_total_people.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            this.inp_total_people.TextChanged += new System.EventHandler(this.update);
+            this.inp_total_people.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.digitCheck);
+            this.inp_total_people.Leave += new System.EventHandler(this.nullCheck);
             // 
             // lbl_tip
             // 
@@ -150,50 +158,39 @@
             this.lbl_tip.TabIndex = 7;
             this.lbl_tip.Text = "Tip %";
             // 
-            // btn_tip_sub
+            // btn_decr_tip
             // 
-            this.btn_tip_sub.BackColor = System.Drawing.Color.WhiteSmoke;
-            this.btn_tip_sub.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
-            this.btn_tip_sub.FlatAppearance.BorderColor = System.Drawing.Color.White;
-            this.btn_tip_sub.FlatAppearance.BorderSize = 10;
-            this.btn_tip_sub.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
-            this.btn_tip_sub.Font = new System.Drawing.Font("Helvetica", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btn_tip_sub.ForeColor = System.Drawing.Color.Gray;
-            this.btn_tip_sub.Location = new System.Drawing.Point(27, 126);
-            this.btn_tip_sub.Name = "btn_tip_sub";
-            this.btn_tip_sub.Size = new System.Drawing.Size(36, 36);
-            this.btn_tip_sub.TabIndex = 6;
-            this.btn_tip_sub.Text = "-";
-            this.btn_tip_sub.UseVisualStyleBackColor = false;
+            this.btn_decr_tip.BackColor = System.Drawing.Color.WhiteSmoke;
+            this.btn_decr_tip.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
+            this.btn_decr_tip.FlatAppearance.BorderColor = System.Drawing.Color.White;
+            this.btn_decr_tip.FlatAppearance.BorderSize = 10;
+            this.btn_decr_tip.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
+            this.btn_decr_tip.Font = new System.Drawing.Font("Helvetica", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btn_decr_tip.ForeColor = System.Drawing.Color.Gray;
+            this.btn_decr_tip.Location = new System.Drawing.Point(27, 126);
+            this.btn_decr_tip.Name = "btn_decr_tip";
+            this.btn_decr_tip.Size = new System.Drawing.Size(36, 36);
+            this.btn_decr_tip.TabIndex = 6;
+            this.btn_decr_tip.Text = "-";
+            this.btn_decr_tip.UseVisualStyleBackColor = false;
+            this.btn_decr_tip.Click += new System.EventHandler(this.btn_decr_tip_Click);
             // 
-            // btn_tip_add
+            // btn_incr_tip
             // 
-            this.btn_tip_add.BackColor = System.Drawing.Color.WhiteSmoke;
-            this.btn_tip_add.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
-            this.btn_tip_add.FlatAppearance.BorderColor = System.Drawing.Color.White;
-            this.btn_tip_add.FlatAppearance.BorderSize = 10;
-            this.btn_tip_add.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
-            this.btn_tip_add.Font = new System.Drawing.Font("Helvetica", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btn_tip_add.ForeColor = System.Drawing.Color.Gray;
-            this.btn_tip_add.Location = new System.Drawing.Point(222, 126);
-            this.btn_tip_add.Name = "btn_tip_add";
-            this.btn_tip_add.Size = new System.Drawing.Size(36, 36);
-            this.btn_tip_add.TabIndex = 5;
-            this.btn_tip_add.Text = "+";
-            this.btn_tip_add.UseVisualStyleBackColor = false;
-            this.btn_tip_add.Click += new System.EventHandler(this.btn_tip_add_Click);
-            // 
-            // inp_tip_bg
-            // 
-            this.inp_tip_bg.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.inp_tip_bg.Font = new System.Drawing.Font("Helvetica", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.inp_tip_bg.Location = new System.Drawing.Point(62, 126);
-            this.inp_tip_bg.MaxLength = 4;
-            this.inp_tip_bg.Name = "inp_tip_bg";
-            this.inp_tip_bg.Size = new System.Drawing.Size(161, 36);
-            this.inp_tip_bg.TabIndex = 3;
-            this.inp_tip_bg.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
-            this.inp_tip_bg.Leave += new System.EventHandler(this.inp_tip_Leave);
+            this.btn_incr_tip.BackColor = System.Drawing.Color.WhiteSmoke;
+            this.btn_incr_tip.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
+            this.btn_incr_tip.FlatAppearance.BorderColor = System.Drawing.Color.White;
+            this.btn_incr_tip.FlatAppearance.BorderSize = 10;
+            this.btn_incr_tip.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
+            this.btn_incr_tip.Font = new System.Drawing.Font("Helvetica", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btn_incr_tip.ForeColor = System.Drawing.Color.Gray;
+            this.btn_incr_tip.Location = new System.Drawing.Point(222, 126);
+            this.btn_incr_tip.Name = "btn_incr_tip";
+            this.btn_incr_tip.Size = new System.Drawing.Size(36, 36);
+            this.btn_incr_tip.TabIndex = 5;
+            this.btn_incr_tip.Text = "+";
+            this.btn_incr_tip.UseVisualStyleBackColor = false;
+            this.btn_incr_tip.Click += new System.EventHandler(this.btn_incr_tip_Click);
             // 
             // lbl_amount
             // 
@@ -216,7 +213,32 @@
             this.inp_amount.TabIndex = 0;
             this.inp_amount.Text = "0.00";
             this.inp_amount.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
-            this.inp_amount.Leave += new System.EventHandler(this.inp_amount_Leave);
+            this.inp_amount.TextChanged += new System.EventHandler(this.update);
+            this.inp_amount.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.inp_amount_KeyPress);
+            this.inp_amount.Leave += new System.EventHandler(this.nullCheck);
+            // 
+            // lbl_percent
+            // 
+            this.lbl_percent.AutoSize = true;
+            this.lbl_percent.Font = new System.Drawing.Font("Helvetica", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lbl_percent.Location = new System.Drawing.Point(146, 130);
+            this.lbl_percent.Name = "lbl_percent";
+            this.lbl_percent.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
+            this.lbl_percent.Size = new System.Drawing.Size(33, 28);
+            this.lbl_percent.TabIndex = 26;
+            this.lbl_percent.Text = "%";
+            this.lbl_percent.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            // 
+            // inp_tip_bg
+            // 
+            this.inp_tip_bg.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.inp_tip_bg.Font = new System.Drawing.Font("Helvetica", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.inp_tip_bg.Location = new System.Drawing.Point(62, 126);
+            this.inp_tip_bg.MaxLength = 4;
+            this.inp_tip_bg.Name = "inp_tip_bg";
+            this.inp_tip_bg.Size = new System.Drawing.Size(161, 36);
+            this.inp_tip_bg.TabIndex = 3;
+            this.inp_tip_bg.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             // 
             // lbl_total_out
             // 
@@ -315,18 +337,6 @@
             this.minimize.MouseLeave += new System.EventHandler(this.minimize_MouseLeave);
             this.minimize.MouseHover += new System.EventHandler(this.minimize_MouseHover);
             // 
-            // lbl_percent
-            // 
-            this.lbl_percent.AutoSize = true;
-            this.lbl_percent.Font = new System.Drawing.Font("Helvetica", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lbl_percent.Location = new System.Drawing.Point(146, 130);
-            this.lbl_percent.Name = "lbl_percent";
-            this.lbl_percent.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
-            this.lbl_percent.Size = new System.Drawing.Size(33, 28);
-            this.lbl_percent.TabIndex = 26;
-            this.lbl_percent.Text = "%";
-            this.lbl_percent.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
-            // 
             // TipCalculator
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 17F);
@@ -362,12 +372,12 @@
         private System.Windows.Forms.TextBox inp_amount;
         private System.Windows.Forms.TextBox inp_tip_bg;
         private System.Windows.Forms.Label lbl_amount;
-        private System.Windows.Forms.Button btn_tip_sub;
-        private System.Windows.Forms.Button btn_tip_add;
+        private System.Windows.Forms.Button btn_decr_tip;
+        private System.Windows.Forms.Button btn_incr_tip;
         private System.Windows.Forms.Label lbl_tip;
         private System.Windows.Forms.Label lbl_no_of_people;
-        private System.Windows.Forms.Button button1;
-        private System.Windows.Forms.Button button2;
+        private System.Windows.Forms.Button btn_decr_people;
+        private System.Windows.Forms.Button btn_incr_people;
         private System.Windows.Forms.TextBox inp_total_people;
         private System.Windows.Forms.Label lbl_total_out;
         private System.Windows.Forms.Label lbl_tip_out;
