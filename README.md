@@ -8,7 +8,8 @@
 <p align="justify">TipCalculator solves all of these problem just input the bill amount, tip % you want to give and total number of people among whom the bill has to be split.  **TipCalculator is the key to your worries!** </p>
 
 See [Project Description](https://drive.google.com/file/d/1C-pBnfbIPc5E5uAFEFfNwY1IB6rDdqH0/view?usp=sharing)
-<br/><br/><br/><br/>
+See [Test Cases](https://github.com/Anand-Sinha/TipCalculator/blob/main/Test%20Cases%20(Tip%20Calculator).pdf)
+<br/><br/><br/>
 
 ## TipCalculator - A Tip Calculator and Splitter App for your Billing Needs.
 
