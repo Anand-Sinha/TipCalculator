@@ -20,10 +20,8 @@ See [Project Description](https://drive.google.com/file/d/1C-pBnfbIPc5E5uAFEFfNw
 
 ## Technology Stack
 
-### Frontend
-
-- Tech Stack: C#.Net
-- UI Framework: Windows Forms
+- Language: C#
+- UI Framework: .Net Windows Forms
 - Editor: Visual Studio
 
 ### Deploys Made
