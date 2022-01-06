@@ -15,25 +15,25 @@ namespace TipCalculator
         {
             try
             {
-                if (String.IsNullOrEmpty(inpTotalPeople.Text) || String.IsNullOrEmpty(inpTip.Text) || String.IsNullOrEmpty(inpAmount.Text)) { }
-                else if (Convert.ToInt16(inpTip.Text) < 0)
+                if (String.IsNullOrEmpty(inpTotalPeople.Text) || String.IsNullOrEmpty(inpTip.Text) || String.IsNullOrEmpty(inpAmount.Text))
                 {
-                    MessageBox.Show("Please input \"Tip %\" as a positive integer.");
-                    inpTip.Text = "0";
+                    lblWarning.Text = "Please don't leave input(s) blank.";
                 }
                 else if (Convert.ToInt32(inpTotalPeople.Text) == 0)
                 {
                     MessageBox.Show("\"Number of people\" can't be 0!");
                     inpTotalPeople.Text = "1";
+                    lblWarning.Text = "";
+                }
+                else if (Convert.ToDouble(inpTip.Text) > 100 && inpAmount.Text!="0.00")
+                {
+                    lblWarning.Text = "Tip exceeding bill amount!";
+                    CalculateAmount(sender, e);
                 }
                 else
                 {
-                    double tip_per_person = Convert.ToDouble(inpTip.Text) / 100;
-                    double amount_per_person = Convert.ToDouble(inpAmount.Text) / Convert.ToDouble(inpTotalPeople.Text);
-                    string tip_share_string = Convert.ToString(amount_per_person * tip_per_person);
-                    string total_per_person = Convert.ToString((amount_per_person + Convert.ToDouble(tip_share_string)));
-                    lblTipOut.Text = '$' + string.Format("{0:#,#00.00}", double.Parse(tip_share_string));
-                    lblTotalOut.Text = '$' + string.Format("{0:#,000.00}", double.Parse(total_per_person));
+                    CalculateAmount(sender, e);
+                    lblWarning.Text = "";
                 }
             }
             catch (Exception ex)
@@ -44,14 +44,28 @@ namespace TipCalculator
                 inpTotalPeople.Text = "1";
             }
         }
+
+        private void CalculateAmount(object sender, EventArgs e)
+        {
+            double tipPerPerson = Convert.ToDouble(inpTip.Text) / 100;
+            double amountPerPerson = Convert.ToDouble(inpAmount.Text) / Convert.ToDouble(inpTotalPeople.Text);
+            string tipShareString = Convert.ToString(amountPerPerson * tipPerPerson);
+            string totalPerPerson = Convert.ToString((amountPerPerson + Convert.ToDouble(tipShareString)));
+            lblTipOut.Text = '$' + string.Format("{0:#,#00.00}", double.Parse(tipShareString));
+            lblTotalOut.Text = '$' + string.Format("{0:#,000.00}", double.Parse(totalPerPerson));
+        }
+
         private void NullCheck(object sender, EventArgs e)
         {
             if (String.IsNullOrEmpty(inpTotalPeople.Text) || String.IsNullOrEmpty(inpTip.Text) || String.IsNullOrEmpty(inpAmount.Text))
             {
                 MessageBox.Show("Please don't leave input(s) blank.");
-                inpAmount.Text = "0.00";
-                inpTip.Text = "10";
-                inpTotalPeople.Text = "1";
+                if (String.IsNullOrEmpty(inpTotalPeople.Text))
+                    inpTotalPeople.Text = "1";
+                else if (String.IsNullOrEmpty(inpTip.Text))
+                    inpTip.Text = "0";
+                else
+                    inpAmount.Text = "0.00";
             }
             else
             {
@@ -62,18 +76,10 @@ namespace TipCalculator
 
         private void DigitCheck(object sender, KeyPressEventArgs e)
         {
-            char ch = e.KeyChar;
-            if (!Char.IsDigit(ch) && ch != 8 && ch != 46)
+            char input = e.KeyChar;
+            if (!Char.IsDigit(input) && input != 8 && input != 46)
             {
-                e.Handled = true;
-            }
-        }
-
-        private void inpAmount_KeyPress(object sender, KeyPressEventArgs e)
-        {
-            char ch = e.KeyChar;
-            if (!Char.IsDigit(ch) && ch != 8 && ch != 46 && ch != 110)
-            {
+                lblWarning.Text = "Please input a number only.";
                 e.Handled = true;
             }
         }

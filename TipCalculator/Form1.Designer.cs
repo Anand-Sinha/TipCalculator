@@ -30,6 +30,8 @@
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(TipCalculator));
             this.pnlDivision = new System.Windows.Forms.Panel();
+            this.lblWarning = new System.Windows.Forms.Label();
+            this.icon = new System.Windows.Forms.PictureBox();
             this.lblHeading = new System.Windows.Forms.Label();
             this.inpTip = new System.Windows.Forms.TextBox();
             this.lblNoOfPeople = new System.Windows.Forms.Label();
@@ -52,7 +54,7 @@
             this.lblClose = new System.Windows.Forms.Label();
             this.lblMinimize = new System.Windows.Forms.Label();
             this.checkBox1 = new System.Windows.Forms.CheckBox();
-            this.icon = new System.Windows.Forms.PictureBox();
+            this.lblName = new System.Windows.Forms.Label();
             this.pnlDivision.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.icon)).BeginInit();
             this.SuspendLayout();
@@ -60,6 +62,7 @@
             // pnlDivision
             // 
             this.pnlDivision.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
+            this.pnlDivision.Controls.Add(this.lblWarning);
             this.pnlDivision.Controls.Add(this.icon);
             this.pnlDivision.Controls.Add(this.lblHeading);
             this.pnlDivision.Controls.Add(this.inpTip);
@@ -78,6 +81,26 @@
             this.pnlDivision.Name = "pnlDivision";
             this.pnlDivision.Size = new System.Drawing.Size(281, 286);
             this.pnlDivision.TabIndex = 0;
+            // 
+            // lblWarning
+            // 
+            this.lblWarning.Font = new System.Drawing.Font("Helvetica", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblWarning.ForeColor = System.Drawing.Color.Red;
+            this.lblWarning.Location = new System.Drawing.Point(15, 258);
+            this.lblWarning.Name = "lblWarning";
+            this.lblWarning.Size = new System.Drawing.Size(259, 15);
+            this.lblWarning.TabIndex = 27;
+            this.lblWarning.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
+            // icon
+            // 
+            this.icon.Image = ((System.Drawing.Image)(resources.GetObject("icon.Image")));
+            this.icon.Location = new System.Drawing.Point(15, 9);
+            this.icon.Name = "icon";
+            this.icon.Size = new System.Drawing.Size(22, 22);
+            this.icon.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
+            this.icon.TabIndex = 26;
+            this.icon.TabStop = false;
             // 
             // lblHeading
             // 
@@ -98,7 +121,7 @@
             this.inpTip.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.inpTip.Font = new System.Drawing.Font("Helvetica", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.inpTip.Location = new System.Drawing.Point(66, 143);
-            this.inpTip.MaxLength = 3;
+            this.inpTip.MaxLength = 4;
             this.inpTip.Name = "inpTip";
             this.inpTip.Size = new System.Drawing.Size(83, 29);
             this.inpTip.TabIndex = 3;
@@ -235,7 +258,7 @@
             this.inpAmount.Text = "0.00";
             this.inpAmount.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             this.inpAmount.TextChanged += new System.EventHandler(this.Update);
-            this.inpAmount.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.inpAmount_KeyPress);
+            this.inpAmount.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.DigitCheck);
             this.inpAmount.Leave += new System.EventHandler(this.NullCheck);
             // 
             // lblPercent
@@ -329,7 +352,7 @@
             this.lblClose.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.lblClose.Font = new System.Drawing.Font("Helvetica", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblClose.ForeColor = System.Drawing.Color.DarkGray;
-            this.lblClose.Location = new System.Drawing.Point(646, 9);
+            this.lblClose.Location = new System.Drawing.Point(646, 6);
             this.lblClose.Name = "lblClose";
             this.lblClose.Padding = new System.Windows.Forms.Padding(3);
             this.lblClose.Size = new System.Drawing.Size(25, 23);
@@ -345,7 +368,7 @@
             this.lblMinimize.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.lblMinimize.Font = new System.Drawing.Font("Helvetica", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblMinimize.ForeColor = System.Drawing.Color.DarkGray;
-            this.lblMinimize.Location = new System.Drawing.Point(623, 8);
+            this.lblMinimize.Location = new System.Drawing.Point(623, 5);
             this.lblMinimize.Name = "lblMinimize";
             this.lblMinimize.Padding = new System.Windows.Forms.Padding(3);
             this.lblMinimize.Size = new System.Drawing.Size(22, 23);
@@ -365,15 +388,16 @@
             this.checkBox1.Text = "checkBox1";
             this.checkBox1.UseVisualStyleBackColor = true;
             // 
-            // icon
+            // lblName
             // 
-            this.icon.Image = ((System.Drawing.Image)(resources.GetObject("icon.Image")));
-            this.icon.Location = new System.Drawing.Point(15, 9);
-            this.icon.Name = "icon";
-            this.icon.Size = new System.Drawing.Size(22, 22);
-            this.icon.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
-            this.icon.TabIndex = 26;
-            this.icon.TabStop = false;
+            this.lblName.AutoSize = true;
+            this.lblName.Font = new System.Drawing.Font("Helvetica", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblName.ForeColor = System.Drawing.Color.DarkGray;
+            this.lblName.Location = new System.Drawing.Point(414, 255);
+            this.lblName.Name = "lblName";
+            this.lblName.Size = new System.Drawing.Size(110, 12);
+            this.lblName.TabIndex = 26;
+            this.lblName.Text = "Made by Anand Sinha";
             // 
             // TipCalculator
             // 
@@ -381,6 +405,7 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.White;
             this.ClientSize = new System.Drawing.Size(676, 276);
+            this.Controls.Add(this.lblName);
             this.Controls.Add(this.checkBox1);
             this.Controls.Add(this.lblMinimize);
             this.Controls.Add(this.lblClose);
@@ -433,6 +458,8 @@
         private System.Windows.Forms.CheckBox checkBox1;
         private System.Windows.Forms.Label lblHeading;
         private System.Windows.Forms.PictureBox icon;
+        private System.Windows.Forms.Label lblWarning;
+        private System.Windows.Forms.Label lblName;
     }
 }
 
