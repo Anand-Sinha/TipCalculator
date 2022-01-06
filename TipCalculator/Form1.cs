@@ -57,21 +57,22 @@ namespace TipCalculator
             }
         }
 
-        // A function that calculates Tip and Amount per person and displays it.
-        private void CalculateAmount(object sender, EventArgs e)
+        // Checks if the value entered by user is a digit and not a character
+        private void DigitCheck(object sender, KeyPressEventArgs e)
         {
-            double tipPerPerson = Convert.ToDouble(inpTip.Text) / 100;
-            double amountPerPerson = Convert.ToDouble(inpAmount.Text) / Convert.ToDouble(inpTotalPeople.Text);
-            string tipShareString = Convert.ToString(amountPerPerson * tipPerPerson);
-            string totalPerPerson = Convert.ToString((amountPerPerson + Convert.ToDouble(tipShareString)));
-            // Sets and outputs amounts into price format.
-            lblTipOut.Text = '$' + string.Format("{0:#,#00.00}", double.Parse(tipShareString));
-            lblTotalOut.Text = '$' + string.Format("{0:#,000.00}", double.Parse(totalPerPerson));
+            char input = e.KeyChar;
+
+            // input 8, 46, 3, 22, 1 are for allowing backspace, delete, Ctrl+C, Ctrl+V and Ctrl+A inputs.
+            if (!Char.IsDigit(input) && input != 8 && input != 46 && input != 3 && input != 22 && input != 1)
+            {
+                lblWarning.Text = "Please input a number only.";
+                e.Handled = true;
+            }
         }
 
         /* Checks if a user leaves any input as empty and moves to another input even after persistent warning label was displayed.
-         If Yes a message box will pop up notifying user about the mistake.
-         Whichever input was left empty will reset to its lowest possible value */
+           If Yes a message box will pop up notifying user about the mistake.
+           Whichever input was left empty will reset to its lowest possible value */
         private void NullCheck(object sender, EventArgs e)
         {
             if (String.IsNullOrEmpty(inpTotalPeople.Text) || String.IsNullOrEmpty(inpTip.Text) || String.IsNullOrEmpty(inpAmount.Text))
@@ -81,10 +82,10 @@ namespace TipCalculator
                 // Checking which input was left empty and resetting its value.
                 if (String.IsNullOrEmpty(inpTotalPeople.Text))
                     inpTotalPeople.Text = "1";
-                
+
                 else if (String.IsNullOrEmpty(inpTip.Text))
                     inpTip.Text = "0";
-                
+
                 else
                     inpAmount.Text = "0.00";
             }
@@ -98,78 +99,70 @@ namespace TipCalculator
             }
         }
 
-        // Checks if the value entered by user is a digit and not a character
-        private void DigitCheck(object sender, KeyPressEventArgs e)
+        // A function that calculates Tip and Amount per person and displays it.
+        private void CalculateAmount(object sender, EventArgs e)
         {
-            char input = e.KeyChar;
-            // input 8 & 46 are for allowing backspace and delete keys.
-            if (!Char.IsDigit(input) && input != 8 && input != 46)
+            double tipPerPerson = Convert.ToDouble(inpTip.Text) / 100;
+            double amountPerPerson = Convert.ToDouble(inpAmount.Text) / Convert.ToDouble(inpTotalPeople.Text);
+            string tipShareString = Convert.ToString(amountPerPerson * tipPerPerson);
+            string totalPerPerson = Convert.ToString((amountPerPerson + Convert.ToDouble(tipShareString)));
+            // Sets and outputs amounts into price format.
+            lblTipOut.Text = '$' + string.Format("{0:#,#00.00}", double.Parse(tipShareString));
+            lblTotalOut.Text = '$' + string.Format("{0:#,000.00}", double.Parse(totalPerPerson));
+        }
+
+        // Increments tip%/No of people by 1.
+        private void IncrementValue(object sender, EventArgs e)
+        {
+            Button btn = (Button)sender;
+            if (btn.Name == "btnIncrTip")
             {
-                lblWarning.Text = "Please input a number only.";
-                e.Handled = true;
+                int tip = Convert.ToInt16(inpTip.Text);
+                inpTip.Text = (++tip).ToString();
+            }
+            else
+            {
+                int people = Convert.ToInt32(inpTotalPeople.Text);
+                inpTotalPeople.Text = (++people).ToString();
             }
         }
 
-        // Increments tip% by 1%.
-        private void btnIncrTip_Click(object sender, EventArgs e)
+        // Decrements tip%/No of people by 1.
+        private void DecrementValue(object sender, EventArgs e)
         {
-            int tip = Convert.ToInt16(inpTip.Text);
-            inpTip.Text = (++tip).ToString();
+            Button btn = (Button)sender;
+            if (btn.Name == "btnDecrTip")
+            {
+                int tip = Convert.ToInt16(inpTip.Text);
+                if (tip > 0)
+                    inpTip.Text = (--tip).ToString();
+            }
+            else
+            {
+                int people = Convert.ToInt32(inpTotalPeople.Text);
+                if (people > 1)
+                    inpTotalPeople.Text = (--people).ToString();
+            }
         }
 
-        // Decrements tip% by 1%.
-        private void btnDecrTip_Click(object sender, EventArgs e)
-        {
-            int tip = Convert.ToInt16(inpTip.Text);
-            if (tip > 0)
-                inpTip.Text = (--tip).ToString();
-        }
-
-        // Increments total people by 1.
-        private void btnIncrPeople_Click(object sender, EventArgs e)
-        {
-            int people = Convert.ToInt32(inpTotalPeople.Text);
-            inpTotalPeople.Text = (++people).ToString();
-        }
-
-        // Decrements total people by 1.
-        private void btnDecrPeople_Click(object sender, EventArgs e)
-        {
-            int people = Convert.ToInt32(inpTotalPeople.Text);
-            if (people > 1)
-                inpTotalPeople.Text = (--people).ToString();
-        }
 
         // UI Customizations
         /* As there are no border to windows form in our case
            Adding a Close button and Minimize button for user.*/
         
-        // On mouse hover close label will turn red with gray background.
-        private void lblClose_MouseHover(object sender, EventArgs e)
+        // On mouse hover label will turn red with gray background.
+        private void OnHover(object sender, EventArgs e)
         {
-            lblClose.BackColor = Color.Gainsboro;
-            lblClose.ForeColor = Color.LightCoral;
+            Label lbl = (Label)sender;
+            lbl.BackColor = Color.Gainsboro;
+            lbl.ForeColor = Color.LightCoral;
         }
-
-        // On mouse leave close label will reset back to its orignal state.
-        private void lblClose_MouseLeave(object sender, EventArgs e)
+        // On mouse leave label will reset back to its orignal state.
+        private void OnLeave(object sender, EventArgs e)
         {
-            lblClose.BackColor = Color.White;
-            lblClose.ForeColor = Color.DarkGray;
-        }
-
-        // On mouse hover minimize label will turn blue with gray background.
-        private void lblMinimize_MouseHover(object sender, EventArgs e)
-        {
-            lblMinimize.BackColor = Color.Gainsboro;
-            lblMinimize.ForeColor = Color.DeepSkyBlue;
-        }
-
-        // On mouse leave minimize label will reset back to its orignal state.
-        private void lblMinimize_MouseLeave(object sender, EventArgs e)
-        {
-            lblMinimize.BackColor = Color.White;
-            lblMinimize.ForeColor = Color.DarkGray;
+            Label lbl = (Label)sender;
+            lbl.BackColor = Color.White;
+            lbl.ForeColor = Color.DarkGray;
         }
 
         // On close label click the app will exit.

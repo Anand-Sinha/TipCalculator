@@ -146,6 +146,7 @@
             // 
             this.btnDecrPeople.BackColor = System.Drawing.Color.WhiteSmoke;
             this.btnDecrPeople.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
+            this.btnDecrPeople.Cursor = System.Windows.Forms.Cursors.Hand;
             this.btnDecrPeople.FlatAppearance.BorderColor = System.Drawing.Color.White;
             this.btnDecrPeople.FlatAppearance.BorderSize = 10;
             this.btnDecrPeople.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
@@ -157,12 +158,13 @@
             this.btnDecrPeople.TabIndex = 5;
             this.btnDecrPeople.Text = "-";
             this.btnDecrPeople.UseVisualStyleBackColor = false;
-            this.btnDecrPeople.Click += new System.EventHandler(this.btnDecrPeople_Click);
+            this.btnDecrPeople.Click += new System.EventHandler(this.DecrementValue);
             // 
             // btnIncrPeople
             // 
             this.btnIncrPeople.BackColor = System.Drawing.Color.WhiteSmoke;
             this.btnIncrPeople.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
+            this.btnIncrPeople.Cursor = System.Windows.Forms.Cursors.Hand;
             this.btnIncrPeople.FlatAppearance.BorderColor = System.Drawing.Color.White;
             this.btnIncrPeople.FlatAppearance.BorderSize = 10;
             this.btnIncrPeople.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
@@ -174,7 +176,7 @@
             this.btnIncrPeople.TabIndex = 7;
             this.btnIncrPeople.Text = "+";
             this.btnIncrPeople.UseVisualStyleBackColor = false;
-            this.btnIncrPeople.Click += new System.EventHandler(this.btnIncrPeople_Click);
+            this.btnIncrPeople.Click += new System.EventHandler(this.IncrementValue);
             // 
             // inpTotalPeople
             // 
@@ -206,6 +208,7 @@
             // 
             this.btnDecrTip.BackColor = System.Drawing.Color.WhiteSmoke;
             this.btnDecrTip.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
+            this.btnDecrTip.Cursor = System.Windows.Forms.Cursors.Hand;
             this.btnDecrTip.FlatAppearance.BorderColor = System.Drawing.Color.White;
             this.btnDecrTip.FlatAppearance.BorderSize = 10;
             this.btnDecrTip.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
@@ -217,12 +220,13 @@
             this.btnDecrTip.TabIndex = 2;
             this.btnDecrTip.Text = "-";
             this.btnDecrTip.UseVisualStyleBackColor = false;
-            this.btnDecrTip.Click += new System.EventHandler(this.btnDecrTip_Click);
+            this.btnDecrTip.Click += new System.EventHandler(this.DecrementValue);
             // 
             // btnIncrTip
             // 
             this.btnIncrTip.BackColor = System.Drawing.Color.WhiteSmoke;
             this.btnIncrTip.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
+            this.btnIncrTip.Cursor = System.Windows.Forms.Cursors.Hand;
             this.btnIncrTip.FlatAppearance.BorderColor = System.Drawing.Color.White;
             this.btnIncrTip.FlatAppearance.BorderSize = 10;
             this.btnIncrTip.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
@@ -234,7 +238,7 @@
             this.btnIncrTip.TabIndex = 4;
             this.btnIncrTip.Text = "+";
             this.btnIncrTip.UseVisualStyleBackColor = false;
-            this.btnIncrTip.Click += new System.EventHandler(this.btnIncrTip_Click);
+            this.btnIncrTip.Click += new System.EventHandler(this.IncrementValue);
             // 
             // lblBill
             // 
@@ -359,8 +363,8 @@
             this.lblClose.TabIndex = 24;
             this.lblClose.Text = "X";
             this.lblClose.Click += new System.EventHandler(this.lblClose_Click);
-            this.lblClose.MouseLeave += new System.EventHandler(this.lblClose_MouseLeave);
-            this.lblClose.MouseHover += new System.EventHandler(this.lblClose_MouseHover);
+            this.lblClose.MouseLeave += new System.EventHandler(this.OnLeave);
+            this.lblClose.MouseHover += new System.EventHandler(this.OnHover);
             // 
             // lblMinimize
             // 
@@ -375,8 +379,8 @@
             this.lblMinimize.TabIndex = 25;
             this.lblMinimize.Text = "_";
             this.lblMinimize.Click += new System.EventHandler(this.lblMinimize_Click);
-            this.lblMinimize.MouseLeave += new System.EventHandler(this.lblMinimize_MouseLeave);
-            this.lblMinimize.MouseHover += new System.EventHandler(this.lblMinimize_MouseHover);
+            this.lblMinimize.MouseLeave += new System.EventHandler(this.OnLeave);
+            this.lblMinimize.MouseHover += new System.EventHandler(this.OnHover);
             // 
             // checkBox1
             // 
